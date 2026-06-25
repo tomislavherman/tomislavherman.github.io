@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tomislav Herman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f6f5f1;
+      --surface:   #ffffff;
+      --ink:       #181818;
+      --mid:       #686868;
+      --faint:     #dedbd4;
+      --accent:    #1d5c8c;
+      --accent-bg: #eaf1f8;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Header */
+    header { padding: 88px 0 68px; }
+
+    .mono-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5.5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin: 18px 0 22px;
+    }
+
+    h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--mid);
+    }
+
+    .intro {
+      font-size: 1.08rem;
+      color: var(--mid);
+      max-width: 540px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .intro strong { color: var(--ink); font-weight: 500; }
+
+    .header-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .header-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .header-links a:hover { color: var(--accent); }
+
+    hr { border: none; border-top: 1px solid var(--faint); margin: 0; }
+
+    /* Sections */
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .section-head h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .section-head .mono-label { color: var(--faint); }
+
+    /* 3-col cap grid */
+    .cap-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+    }
+
+    .cap-cell {
+      background: var(--surface);
+      padding: 20px 22px 24px;
+    }
+
+    .cap-title {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 12px;
+    }
+
+    .cap-cell ul { list-style: none; padding: 0; }
+
+    .cap-cell ul li {
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.75;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .cap-cell ul li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--faint);
+    }
+
+    /* Problems */
+    .problems-block { margin-top: 40px; }
+
+    .problems-block .cap-title { margin-bottom: 20px; }
+
+    .problems {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 40px;
+    }
+
+    .problem-item .p-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+
+    .problem-item p {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* Projects - references */
+    .project + .project {
+      margin-top: 36px;
+      padding-top: 36px;
+      border-top: 1px solid var(--faint);
+    }
+
+    .proj-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .proj-name {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .proj-ref {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--mid);
+      text-decoration: none;
+      border-bottom: 1px solid var(--faint);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .proj-ref:hover { color: var(--accent); border-color: var(--accent); }
+
+    .proj-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      background: var(--accent-bg);
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+
+    .tag.neutral { color: var(--mid); background: var(--bg); }
+
+    .proj-desc {
+      font-size: 0.92rem;
+      color: var(--mid);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* Personal projects grid */
+    .personal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+    }
+
+    .personal-cell {
+      background: var(--surface);
+      padding: 20px 22px 24px;
+    }
+
+    .personal-cell .proj-name { display: block; margin-bottom: 8px; }
+    .personal-cell .proj-desc { font-size: 0.85rem; margin-top: 10px; }
+
+    /* Contact */
+    .availability {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: #2a7a4b;
+      background: #eaf6ef;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .availability::before { content: '● '; font-size: 0.6rem; vertical-align: middle; margin-right: 2px; }
+
+    .contact-block p { font-size: 1rem; color: var(--mid); margin-bottom: 6px; }
+
+    .contact-block a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .contact-block a:hover { border-color: var(--accent); }
+
+    footer { padding: 28px 0 52px; }
+
+    footer p { font-family: var(--mono); font-size: 0.68rem; color: var(--faint); }
+
+    @media (max-width: 600px) {
+      header { padding: 56px 0 48px; }
+      section { padding: 40px 0; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .problems { grid-template-columns: 1fr; }
+      .personal-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="mono-label">Software engineer · Samobor, Croatia</p>
+    <h1>Tomislav Herman<br><em>architect and engineer, from design to production.</em></h1>
+    <p class="intro">
+      <strong>15+ years</strong> designing and building backend systems, developer platforms, and distributed architectures.
+      I work across backend, architecture, and infrastructure.
+    </p>
+    <nav class="header-links">
+      <a href="https://github.com/tomislavherman" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        github.com/tomislavherman
+      </a>
+      <a href="https://linkedin.com/in/tomislavherman" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/tomislavherman
+      </a>
+      <a href="mailto:tomislav.herman@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        tomislav.herman@gmail.com
+      </a>
+    </nav>
+  </header>
+
+  <hr />
+
+  <section>
+    <div class="section-head">
+      <h2>What I know</h2>
+      <span class="mono-label">capabilities</span>
+    </div>
+
+    <div class="cap-grid">
+      <div class="cap-cell">
+        <p class="cap-title">Tech stack</p>
+        <ul>
+          <li>TypeScript &amp; Node.js</li>
+          <li>Go</li>
+          <li>C#</li>
+          <li>PostgreSQL · MySQL · MongoDB · Neo4j</li>
+          <li>Redis · Apache Kafka</li>
+          <li>GCP · AWS · OCI</li>
+          <li>Docker</li>
+        </ul>
+      </div>
+      <div class="cap-cell">
+        <p class="cap-title">Domains</p>
+        <ul>
+          <li>Financial systems / payment platforms</li>
+          <li>Developer platforms / APIs</li>
+          <li>Distributed / event-driven systems</li>
+          <li>Mobile app platforms</li>
+          <li>Smart home / IoT</li>
+          <li>Marketplaces</li>
+        </ul>
+      </div>
+      <div class="cap-cell">
+        <p class="cap-title">Roles</p>
+        <ul>
+          <li>Systems architect</li>
+          <li>Backend engineer</li>
+          <li>API / platform design</li>
+          <li>Technical documentation author</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="problems-block">
+      <p class="cap-title">Examples of problems I solved</p>
+      <div class="problems">
+        <div class="problem-item">
+          <p class="p-label">Distributed transaction atomicity</p>
+          <p>Designed a two-phase commit protocol ensuring transactions across independent participants either fully complete or cleanly abort.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Async transaction processing</p>
+          <p>Restructured tangled async logic into explicit saga steps, each with defined execute and reverse logic, coordinated via Kafka.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Authorization across microservices</p>
+          <p>Built a JWT-based system that shipped resolved access rules to each service, eliminating runtime calls to a central auth service.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Distributed tracing across Kafka</p>
+          <p>Propagated Datadog trace context through Kafka message headers so a single transaction was visible as one trace across all services.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Legacy integration compatibility</p>
+          <p>Bridged synchronous bank API expectations with an internally async transaction architecture, keeping existing integrations intact without reverting the internal redesign.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Custom data validation at platform level</p>
+          <p>Introduced JSON Schema-based record validation into a developer platform, enabling clients to enforce their own data contracts without custom code.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Billing system redesign</p>
+          <p>Moved pricing logic from SQL stored procedures to Recurly, modelling features as add-ons and eliminating fragile in-house calculation code.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Image delivery at scale</p>
+          <p>Replaced eager pre-generation of image variants with on-demand resizing and S3 caching, reducing storage and removing backend bottlenecks.</p>
+        </div>
+        <div class="problem-item">
+          <p class="p-label">Documentation architecture</p>
+          <p>Introduced the Diátaxis model to separate tutorials, guides, explanations, and references; automated OpenAPI generation to keep API docs in sync with code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Work I've shipped</h2>
+      <span class="mono-label">references</span>
+    </div>
+
+    <div class="project">
+      <div class="proj-header">
+        <span class="proj-name">Minka Ledger</span>
+        <a class="proj-ref" href="https://docs.minka.io/ledger/" target="_blank" rel="noopener">docs.minka.io/ledger ↗</a>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Financial infrastructure</span>
+        <span class="tag">Developer platform</span>
+        <span class="tag neutral">Node.js · TypeScript · Kafka · PostgreSQL · GCP</span>
+      </div>
+      <p class="proj-desc">
+        Architectural owner and senior engineer on Minka Ledger — a distributed ledger-as-a-service for building payment and financial solutions. Led system design, defined service boundaries and data models, and shaped the platform's developer experience including API design and structured documentation.
+      </p>
+    </div>
+
+    <div class="project">
+      <div class="proj-header">
+        <span class="proj-name">Shoutem Platform</span>
+        <a class="proj-ref" href="https://shoutem.github.io/docs/extensions/tutorials/getting-started" target="_blank" rel="noopener">shoutem.github.io ↗</a>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Mobile app platform</span>
+        <span class="tag">Extension ecosystem</span>
+        <span class="tag neutral">Node.js · JavaScript · MongoDB · AWS</span>
+      </div>
+      <p class="proj-desc">
+        Core backend engineer and later architect on a React Native mobile app builder platform. Led a full rewrite from C# to Node.js with migration from bare-metal to AWS. Designed the JSON:API-compliant platform framework and architected the extension ecosystem — an open React Native plugin model that let third-party developers ship self-contained features with their own isolated backends.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Personal projects</h2>
+      <span class="mono-label">open source &amp; hobby</span>
+    </div>
+    <div class="personal-grid">
+      <div class="personal-cell">
+        <span class="proj-name">newsdesk</span>
+        <a class="proj-ref" href="https://github.com/tomislavherman/newsdesk" target="_blank" rel="noopener">github ↗</a>
+        <div class="proj-tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">Anthropic API</span>
+        </div>
+        <p class="proj-desc">News aggregator with AI-powered metadata extraction and relevance filtering.</p>
+      </div>
+      <div class="personal-cell">
+        <span class="proj-name">jobscout</span>
+        <a class="proj-ref" href="https://github.com/tomislavherman/jobscout" target="_blank" rel="noopener">github ↗</a>
+        <div class="proj-tags">
+          <span class="tag">Go</span>
+          <span class="tag">React</span>
+          <span class="tag">MySQL</span>
+        </div>
+        <p class="proj-desc">Job tracking tool with AI-extracted structured properties from free-form postings.</p>
+      </div>
+      <div class="personal-cell">
+        <span class="proj-name">dimgrid</span>
+        <a class="proj-ref" href="https://github.com/tomislavherman/dimgrid" target="_blank" rel="noopener">github ↗</a>
+        <div class="proj-tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">npm</span>
+        </div>
+        <p class="proj-desc">Library for generating Cartesian products across named dimensions. Published on npm.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Get in touch</h2>
+      <span class="mono-label">contact</span>
+    </div>
+    <p class="availability">Available for work</p>
+    <div class="contact-block">
+      <p>I'm open to consulting engagements, B2B contracts, and interesting technical problems.</p>
+      <p style="margin-top:16px"><a href="mailto:tomislav.herman@gmail.com">tomislav.herman@gmail.com</a></p>
+      <p><a href="https://linkedin.com/in/tomislavherman" target="_blank" rel="noopener">linkedin.com/in/tomislavherman</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>th.is-a.dev</p>
+  </footer>
+
+</div>
+</body>
+</html>
+
