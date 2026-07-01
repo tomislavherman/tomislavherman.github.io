@@ -146,16 +146,21 @@
     .cap-cell ul li {
       font-size: 0.9rem;
       color: var(--ink);
-      line-height: 1.75;
-      padding-left: 12px;
+      line-height: 1.5;
+      padding-left: 20px;
       position: relative;
     }
 
+    .cap-cell ul li + li { margin-top: 10px; }
+
     .cap-cell ul li::before {
-      content: '·';
+      content: '→';
       position: absolute;
       left: 0;
-      color: var(--faint);
+      top: 0;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
     }
 
     /* Problems */
@@ -287,6 +292,10 @@
 
     .contact-block a:hover { border-color: var(--accent); }
 
+    .contact-block .header-links { margin-top: 16px; }
+    .contact-block .header-links a { color: var(--mid); border-bottom: none; }
+    .contact-block .header-links a:hover { color: var(--accent); }
+
     footer { padding: 28px 0 52px; }
 
     footer p { font-family: var(--mono); font-size: 0.68rem; color: var(--faint); }
@@ -320,10 +329,6 @@
       <a href="https://linkedin.com/in/tomislavherman" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         linkedin.com/in/tomislavherman
-      </a>
-      <a href="mailto:tomislav.herman@gmail.com">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        tomislav.herman@gmail.com
       </a>
     </nav>
   </header>
@@ -460,6 +465,7 @@
       <div class="personal-cell">
         <span class="proj-name">newsdesk</span>
         <a class="proj-ref" href="https://github.com/tomislavherman/newsdesk" target="_blank" rel="noopener">github ↗</a>
+        <a class="proj-ref" href="https://newsdesk.th.is-a.dev/" target="_blank" rel="noopener">live ↗</a>
         <div class="proj-tags">
           <span class="tag">TypeScript</span>
           <span class="tag">Anthropic API</span>
@@ -469,6 +475,7 @@
       <div class="personal-cell">
         <span class="proj-name">jobscout</span>
         <a class="proj-ref" href="https://github.com/tomislavherman/jobscout" target="_blank" rel="noopener">github ↗</a>
+        <a class="proj-ref" href="https://jobscout.th.is-a.dev/new" target="_blank" rel="noopener">live ↗</a>
         <div class="proj-tags">
           <span class="tag">Go</span>
           <span class="tag">React</span>
@@ -479,6 +486,7 @@
       <div class="personal-cell">
         <span class="proj-name">dimgrid</span>
         <a class="proj-ref" href="https://github.com/tomislavherman/dimgrid" target="_blank" rel="noopener">github ↗</a>
+        <a class="proj-ref" href="https://www.npmjs.com/package/dimgrid" target="_blank" rel="noopener">npm ↗</a>
         <div class="proj-tags">
           <span class="tag">TypeScript</span>
           <span class="tag">npm</span>
@@ -496,6 +504,12 @@
     <p class="availability">Available for work</p>
     <div class="contact-block">
       <p>I'm open to consulting engagements, B2B contracts, and interesting technical problems.</p>
+      <nav class="header-links">
+        <a href="mailto:tomislav.herman@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          tomislav.herman@gmail.com
+        </a>
+      </nav>
     </div>
   </section>
 
